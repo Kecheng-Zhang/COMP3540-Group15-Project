@@ -38,12 +38,13 @@ public class BulletControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // If the bullet collides with the enemy, the enemy will lose HP and the bullet will be destroyed.
         if (collision.gameObject.CompareTag("Enemy"))
         {
             EnemyControl enemyControl = collision.gameObject.GetComponent<EnemyControl>();
             enemyControl.HP -= damage;
             Destroy(gameObject);
-        } else if (collision.gameObject.CompareTag("Obstacle"))
+        } else if (collision.gameObject.CompareTag("Obstacle")) // the bullet does not hurt the obstacle.
         {
             Destroy(gameObject);
         }

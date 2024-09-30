@@ -37,6 +37,11 @@ public class BuffManager : MonoBehaviour
 
     }
 
+    /** 
+     * <summary>
+     * Open the buff menu and pause the game.
+     * </summary>
+     */
     public void openBuffMenu()
     {
         getBuffObjs();
@@ -49,6 +54,12 @@ public class BuffManager : MonoBehaviour
         gameManager.statusText.gameObject.SetActive(true);
     }
 
+    /** 
+     * <summary>
+     * Select the buff according to the index.
+     * </summary>
+     * <param name="index">The index of the buff to be selected.</param>
+     */
     public void selectBuff(int index)
     {
         Instantiate(buffObjs[index], player.transform.position, player.transform.rotation);
@@ -59,6 +70,11 @@ public class BuffManager : MonoBehaviour
         buffMenuClosed = true;
     }
 
+    /** 
+     * <summary>
+     * Shuffle the buffPool and get the first three elements as the buffObjs.
+     * </summary>
+     */
     private void getBuffObjs()
     {
         for (int i = 0; i < buffPool.Length; i++)

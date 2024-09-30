@@ -8,8 +8,8 @@ public class EnemyControl : MonoBehaviour
     public float maxHP;
     private GameObject HPIndicator;
 
-    public float pDrop;
-    public float pDropHP;
+    public float pDrop; // The probability of the enemy dropping the aid (0 - 1)
+    public float pDropHP; // The probability of the aid being HP (0 - 1)
     public GameObject aidHP;
     public GameObject aidEN;
 
@@ -43,17 +43,18 @@ public class EnemyControl : MonoBehaviour
         {
             shoot();
             StartCoroutine(shootCoolDown());
-            Debug.Log("shoot");
         }
     }
     private void checkStatus()
     {
+        // Check the HP of the enemy
         HP = Mathf.Clamp(HP, 0, maxHP);
 
         Color HPColor = HPIndicator.GetComponent<MeshRenderer>().material.color;
         HPColor.a = HP / maxHP;
         HPIndicator.GetComponent<MeshRenderer>().material.color = HPColor;
 
+        // If the HP of the enemy is 0, the enemy will be destroyed and the player will get the score.
         if (HP <= 0)
         {
             dropAid();
@@ -62,6 +63,11 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
+    /** 
+     * <summary>
+     * Drop the aid according to the probability.
+     * </summary>
+     */
     private void dropAid()
     {
         float chanceDrop = Random.Range(0f, 1f);
@@ -78,18 +84,33 @@ public class EnemyControl : MonoBehaviour
         }
     }
 
+    /** 
+     * <summary>
+     * Shoot the bullet.
+     * </summary>
+     */
     private void shoot()
     {
         Instantiate(bullet, transform.position, transform.rotation);
         canShoot = false;
     }
 
+    /** 
+     * <summary>
+     * The cool down time of shooting.
+     * </summary>
+     */
     IEnumerator shootCoolDown()
     {
         yield return new WaitForSeconds(1 / fireRate);
         canShoot = true;
     }
 
+    /** 
+     * <summary>
+     * The enemy will lose HP if it collides with the player.
+     * </summary>
+     */
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))

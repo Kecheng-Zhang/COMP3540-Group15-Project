@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B1235EE4-71EE-C815-28F8-C3378E5ADB84}</ProjectGuid>
+    <ProjectGuid>{BA2278C0-A8D2-46E0-B0A1-E8AF86EA6EC5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -63,7 +63,6 @@
     <Compile Include="Assets\Scripts\MoveToPlayer.cs" />
     <Compile Include="Assets\Scripts\Spawner.cs" />
     <Compile Include="Assets\Scripts\BulletControl.cs" />
-    <Compile Include="Assets\Scripts\EnemyShoot.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />

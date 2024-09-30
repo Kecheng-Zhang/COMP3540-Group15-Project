@@ -26,6 +26,11 @@ public class MoveToPlayer : MonoBehaviour
         moveToPlayer();
     }
 
+    /**
+     * <summary>
+     * Move the enemy to the player.
+     * </summary>
+     */
     private void moveToPlayer()
     {
         Vector3 direction = player.transform.position - transform.position;

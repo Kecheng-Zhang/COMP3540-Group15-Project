@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Initialize the game
         Time.timeScale = 1;
         score = 0;
         level = 0;
@@ -45,35 +46,59 @@ public class GameManager : MonoBehaviour
         float gameSpeed = Time.timeScale;
         setStatus();
 
+        // Press Tab to show the status of the player
         if (Input.GetKeyDown(KeyCode.Tab) && !isGameOver)
         {
 
             statusText.gameObject.SetActive(true);
             Time.timeScale = 0;
-        } else if (Input.GetKeyUp(KeyCode.Tab) && !isGameOver)
+        } 
+        // Release Tab to hide the status of the player
+        else if (Input.GetKeyUp(KeyCode.Tab) && !isGameOver)
         {
             statusText.gameObject.SetActive(false);
             Time.timeScale = 1;
         }
     }
 
+    /**
+     * <summary>
+     * Add the score to the game
+     * </summary>
+     * <param name="value">The score to be added</param>
+     */
     public void addScore(int value)
     {
         score += value;
         scoreText.text = "Score: " + score;
     }
 
+    /**
+     * <summary>
+     * Add the level to the game
+     * </summary>
+     */
     public void addLevel()
     {
         level++;
         levelText.text = "Level: " + level;
     }
 
+    /**
+     * <summary>
+     * Restart the game
+     * </summary>
+     */
     public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    /**
+     * <summary>
+     * End the game
+     * </summary>
+     */
     public void gameOver()
     {
         Time.timeScale = 0;
@@ -87,6 +112,11 @@ public class GameManager : MonoBehaviour
         isGameOver = true;
     }
 
+    /**
+     * <summary>
+     * Set the status of the player
+     * </summary>
+     */
     public void setStatus()
     {
         float hp = Mathf.Round(playerControl.HP);

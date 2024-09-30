@@ -44,7 +44,13 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    // spawn the enemy with index
+    /**
+     * <summary>
+     * Spawn an enemy of the given index.
+     * </summary>
+     * <param name="index">The index of the enemy to spawn.</param>
+     * <param name="rMax">The maximum radius to spawn the enemy.</param>
+     */
     private void spawnIndex(int index, float rMax)
     {
         float spawnRadius = Random.Range(spawnRadiusMin, rMax);
@@ -59,6 +65,14 @@ public class Spawner : MonoBehaviour
         enemyControl.HP = enemyControl.maxHP;
     }
 
+    /**
+     * <summary>
+     * Spawn a wave of enemies.
+     * </summary>
+     * <param name="numToSpawn">The number of enemies to spawn.</param>
+     * <param name="enemyIndex">The index of the enemy to spawn.</param>
+     * <param name="rMax">The maximum radius to spawn the enemies.</param>
+     */
     private void spawnWave(int numToSpawn, int enemyIndex, float rMax)
     {
         for (int i = 0; i < numToSpawn; i++)

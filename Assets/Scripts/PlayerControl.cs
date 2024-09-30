@@ -101,24 +101,33 @@ public class PlayerControl : MonoBehaviour
         }
     }
 
+    /**
+     * <summary>
+     * Update the velocity of the player.
+     * </summary>
+     */
     private void UpdateVelocity()
     {
         float speed = playerRB.velocity.magnitude;
 
+        // If the player is moving, accelerate the player.
         if (playerInput.magnitude != 0 && speed < speedLimit)
         {
             playerRB.velocity += playerInput * accleration * Time.deltaTime;
         }
+        // If the player is not moving, decelerate the player.
         else
         {
             playerRB.velocity -= playerRB.velocity.normalized * fraction * Time.deltaTime;
         }
         
+        // If the player is moving backward, stop the player.
         if (speed < 0)
         {
             playerRB.velocity *= 0;
         }
 
+        // Update the position of the sprint indicator.
         Vector3 sprintIndicatorPos = new Vector3(
             transform.position.x + playerInput.x,
             -0.46f,
@@ -126,15 +135,24 @@ public class PlayerControl : MonoBehaviour
         sprintIndicator.transform.position = sprintIndicatorPos;
     }
 
+    /**
+     * <summary>
+     * Check if the player is in the boundary.
+     * </summary>
+     */
     private void checkInBoundary()
     {
-
         float x = Mathf.Clamp(transform.position.x, -xRange, xRange);
         float z = Mathf.Clamp(transform.position.z, -zRange, zRange);
         transform.position = new Vector3(x, 0, z);
         
     }
 
+    /**
+     * <summary>
+     * Make the player look at the mouse.
+     * </summary>
+     */
     private void lookAtMouse()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -143,6 +161,11 @@ public class PlayerControl : MonoBehaviour
         transform.LookAt(mousePos);
     }
 
+    /**
+     * <summary>
+     * Check the status of the player.
+     * </summary>
+     */
     private void checkStatus()
     {
         // Check HP
@@ -173,10 +196,16 @@ public class PlayerControl : MonoBehaviour
             canSP = false;
             powerColor.a = 0.3f;
         }
+        // Update the power indicator
         powerIndicator.GetComponent<MeshRenderer>().material.color = powerColor;
 
     }
 
+    /**
+     * <summary>
+     * Shoot the bullet.
+     * </summary>
+     */
     private void shoot()
     {
         for (int i = 0; i < bulletNum; i++)
@@ -191,12 +220,22 @@ public class PlayerControl : MonoBehaviour
         canShoot = false;
     }
 
+    /**
+     * <summary>
+     * The cool down time for shooting.
+     * </summary>
+     */
     IEnumerator shootCoolDown()
     {
         yield return new WaitForSeconds(1 / fireRate);
         canShoot = true;
     }
 
+    /**
+     * <summary>
+     * The cool down time for sprinting.
+     * </summary>
+     */
     IEnumerator SPDuration()
     {
         yield return new WaitForSeconds(SPDurationTime);
@@ -204,6 +243,11 @@ public class PlayerControl : MonoBehaviour
         shell.SetActive(false);
     }
 
+    /**
+     * <summary>
+     * Sprint.
+     * </summary>
+     */
     private void sprint()
     {
         playerRB.velocity = playerInput.normalized * speedLimit * sprintFactor;
@@ -213,11 +257,21 @@ public class PlayerControl : MonoBehaviour
         sprintIndicator.GetComponent<MeshRenderer>().material.color = sprintColor;
     }
 
+    /**
+     * <summary>
+     * Check if the player is invincible.
+     * </summary>
+     */
     public bool isInvincible()
     {
         return isSP;
     }
 
+    /**
+     * <summary>
+     * The cool down time for sprinting.
+     * </summary>
+     */
     IEnumerator sprintCoolDown()
     {
         yield return new WaitForSeconds(sprintCoolTime);
@@ -229,6 +283,7 @@ public class PlayerControl : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        // If the player collides with the enemy, the player will lose HP.
         if (collision.gameObject.CompareTag("Enemy") && isSP)
         {
             collision.gameObject.GetComponent<EnemyControl>().HP = 0;

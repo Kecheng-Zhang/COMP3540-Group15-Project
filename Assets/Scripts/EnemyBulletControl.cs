@@ -29,8 +29,14 @@ public class EnemyBulletControl : MonoBehaviour
         }
     }
 
+    /**
+     * <summary>
+     * When the bullet collides with the player or the obstacle, the bullet will be destroyed.
+     * </summary>
+     */
     private void OnCollisionEnter(Collision collision)
     {
+        // If the bullet collides with the player, the player will lose HP and the bullet will be destroyed.
         if (collision.gameObject.CompareTag("Player"))
         {
             PlayerControl playerControl = collision.gameObject.GetComponent<PlayerControl>();
@@ -40,6 +46,7 @@ public class EnemyBulletControl : MonoBehaviour
             }
             Destroy(gameObject);
         }
+        // If the bullet collides with the obstacle, the bullet will be destroyed.
         else if (collision.gameObject.CompareTag("Obstacle"))
         {
             Destroy(gameObject);
