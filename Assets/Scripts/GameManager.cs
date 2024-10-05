@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
-   
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI levelText;
@@ -18,13 +17,8 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     private PlayerControl playerControl;
 
-    //Add new definition of the button
-    public GameObject startPanel;
-    public Button yesButton; // "continue" game 
-    public Button noButton; //"start tutorial"
-    
     private bool isGameOver;
-    
+
     private int score;
     private int level;
 
@@ -44,16 +38,7 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
         statusText.gameObject.SetActive(false);
-
-        // Add "Yes" and "No" button litsner
-        if (yesButton != null && noButton != null)
-        {
-            yesButton.onClick.AddListener(ContinueGame);
-            noButton.onClick.AddListener(startTutorial);
-        }
-        ShowStartPanel(); 
     }
-
 
     // Update is called once per frame
     void Update()
@@ -74,32 +59,6 @@ public class GameManager : MonoBehaviour
             statusText.gameObject.SetActive(false);
             Time.timeScale = 1;
         }
-    }
-
-    // Display panel
-    private void ShowStartPanel()
-    {
-        startPanel.SetActive(true);
-        Time.timeScale = 0;
-    }
-
-    // Choose continue game
-    private void ContinueGame()
-    {
-        startPanel.SetActive(false);
-        yesButton.gameObject.SetActive(false);
-        noButton.gameObject.SetActive(false);
-        Time.timeScale = 1;
-
-    }
-
-    // go to tutorial level
-    private void startTutorial()
-    {
-        startPanel.SetActive(false);
-        yesButton.gameObject.SetActive(false);
-        noButton.gameObject.SetActive(false);
-        SceneManager.LoadScene("Tutoriallevel");
     }
 
     /**

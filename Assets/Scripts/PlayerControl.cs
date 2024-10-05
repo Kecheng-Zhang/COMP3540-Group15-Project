@@ -64,10 +64,6 @@ public class PlayerControl : MonoBehaviour
     // Fixed update
     private void FixedUpdate()
     {
-        // If the game has not started or has been paused, no boundary check is performed
-        if (Time.timeScale == 0)
-            return;
-
         checkInBoundary();
         checkStatus();
     }
@@ -75,10 +71,6 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // If the game has not started, then player cannot do any movement
-        if (Time.timeScale == 0)
-            return;
-
         playerInput.x = Input.GetAxis("Horizontal");
         playerInput.z = Input.GetAxis("Vertical");
         playerInput = playerInput.normalized;
@@ -117,10 +109,6 @@ public class PlayerControl : MonoBehaviour
     private void UpdateVelocity()
     {
         float speed = playerRB.velocity.magnitude;
-
-        //If the game has not started, no updated speed
-        if (Time.timeScale == 0)
-            return;
 
         // If the player is moving, accelerate the player.
         if (playerInput.magnitude != 0 && speed < speedLimit)
