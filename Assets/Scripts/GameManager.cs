@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI finalScoreText;
     public TextMeshProUGUI statusText;
+
+    public TextMeshProUGUI hpText;
+    public TextMeshProUGUI energyText;
     public Button restartButton;
 
     private GameObject player;
@@ -21,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     private int score;
     private int level;
+
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +42,9 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
         statusText.gameObject.SetActive(false);
+
+        UpdateHP();
+        UpdateEnergy();
     }
 
     // Update is called once per frame
@@ -45,6 +52,10 @@ public class GameManager : MonoBehaviour
     {
         float gameSpeed = Time.timeScale;
         setStatus();
+
+        UpdateHP();
+        UpdateEnergy();
+
 
         // Press Tab to show the status of the player
         if (Input.GetKeyDown(KeyCode.Tab) && !isGameOver)
@@ -109,6 +120,9 @@ public class GameManager : MonoBehaviour
         scoreText.gameObject.SetActive(false);
         levelText.gameObject.SetActive(false);
         statusText.gameObject.SetActive(false);
+        hpText.gameObject.SetActive(false);
+        energyText.gameObject.SetActive(false);
+
         isGameOver = true;
     }
 
@@ -135,4 +149,17 @@ public class GameManager : MonoBehaviour
         statusText.text += "Speed: " + playerControl.speedLimit + "\n";
         statusText.text += "Sprint CD: " + playerControl.sprintCoolTime + "/s\n";
     }
+
+    public void UpdateHP()
+    {
+        float hp = Mathf.Round(playerControl.HP);
+        hpText.text = "HP: " + hp + " / " + playerControl.maxHP;
+    }
+
+    public void UpdateEnergy()
+    {
+        float energy = Mathf.Round(playerControl.EN);
+        energyText.text = "Energy: " + energy + " / " + playerControl.maxEN;
+    }
+
 }
