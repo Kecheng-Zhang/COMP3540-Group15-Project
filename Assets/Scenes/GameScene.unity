@@ -6829,11 +6829,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb24e657460b2c94bafb42b79bfaf419, type: 3}
---- !u!1 &1747736508 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7050416144808189192, guid: 11c89a7f73c790541a694de8fc29dd22, type: 3}
-  m_PrefabInstance: {fileID: 5863717820929569678}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1751742490 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6491375956498597267, guid: fb24e657460b2c94bafb42b79bfaf419, type: 3}
@@ -7129,7 +7124,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2097316958}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BuffManager, Assembly-CSharp
         m_MethodName: selectBuff
         m_Mode: 3
@@ -7465,7 +7460,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2097316958}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BuffManager, Assembly-CSharp
         m_MethodName: selectBuff
         m_Mode: 3
@@ -8460,7 +8455,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2097316958}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: BuffManager, Assembly-CSharp
         m_MethodName: selectBuff
         m_Mode: 3
@@ -8655,7 +8650,6 @@ GameObject:
   - component: {fileID: 2097316955}
   - component: {fileID: 2097316956}
   - component: {fileID: 2097316957}
-  - component: {fileID: 2097316958}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8717,33 +8711,6 @@ MonoBehaviour:
   hpText: {fileID: 1617224597}
   energyText: {fileID: 1670540300}
   restartButton: {fileID: 1416199194}
---- !u!114 &2097316958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097316954}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1f94017cf42e264f855ad21ee965713, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buffMenu: {fileID: 851549130}
-  player: {fileID: 1747736508}
-  buffPool:
-  - {fileID: 3692435100201994668, guid: 620231ff13b8d374d99d357567f0a0a4, type: 3}
-  - {fileID: 3692435100201994668, guid: 3b5073f951810514ab9ebac0e66dfddc, type: 3}
-  - {fileID: 3692435100201994668, guid: 1669d26876dfeca45b352d8f481fd99d, type: 3}
-  - {fileID: 3692435100201994668, guid: 77fcf3b78c27bf949a459cfd68e4b117, type: 3}
-  - {fileID: 3692435100201994668, guid: 0fd1127d9776a344c932bd0726ea4439, type: 3}
-  - {fileID: 3692435100201994668, guid: ea279620d8b764e4fbd8473beb47f052, type: 3}
-  - {fileID: 3692435100201994668, guid: f8fedf24492f94742b4775d52185868f, type: 3}
-  - {fileID: 3692435100201994668, guid: 299b86d6ee6e67e4d94ff7f32ea78443, type: 3}
-  - {fileID: 3692435100201994668, guid: c2f9a17fc010f6647b26c847a1f55924, type: 3}
-  - {fileID: 3692435100201994668, guid: 234902e25aeb8fe428eb50db4ee1d486, type: 3}
-  - {fileID: 3692435100201994668, guid: 4d3cd75f8b32c0d4283b2d3780286140, type: 3}
-  buffMenuClosed: 1
 --- !u!1 &2098860959
 GameObject:
   m_ObjectHideFlags: 0

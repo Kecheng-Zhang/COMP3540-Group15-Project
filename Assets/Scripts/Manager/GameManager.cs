@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        downloadGameState();
         // Initialize the game
         Time.timeScale = 1;
         score = 0;
@@ -92,6 +93,26 @@ public class GameManager : MonoBehaviour
     public void addLevel()
     {
         level++;
+        levelText.text = "Level: " + level;
+    }
+
+    /**
+     * Upload the Game state to the database
+     */
+    public void uploadGameState()
+    {
+        PlayerPrefs.SetFloat("Score", score);
+        PlayerPrefs.SetInt("Level", level);
+    }
+
+    /**
+     * Download the Game state from the database
+     */
+    public void downloadGameState()
+    {
+        score = PlayerPrefs.GetInt("Score");
+        level = PlayerPrefs.GetInt("Level");
+        scoreText.text = "Score: " + score;
         levelText.text = "Level: " + level;
     }
 

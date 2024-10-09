@@ -39,8 +39,6 @@ public class Spawner : MonoBehaviour
             spawnWave(enemyNormNum, 0, spawnRadiusMax + waveNum * 2);
             spawnWave(enemyFastNum, 1, spawnRadiusMax + waveNum);
             spawnWave(enemyShooterNum, 2, spawnRadiusMax + waveNum * 2 / 3);
-
-            buffManager.openBuffMenu();
         }
     }
 
