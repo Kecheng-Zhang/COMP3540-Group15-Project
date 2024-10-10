@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Slider hpSlider;
+    public Slider enSlider;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI gameOverText;
@@ -43,6 +45,12 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
         statusText.gameObject.SetActive(false);
+
+        // HP Slider defalut
+        player = GameObject.Find("Player");
+        playerControl = player.GetComponent<PlayerControl>();
+        enSlider.maxValue = playerControl.maxEN; 
+        enSlider.value = playerControl.EN;
 
         UpdateHP();
         UpdateEnergy();
@@ -113,7 +121,7 @@ public class GameManager : MonoBehaviour
         score = PlayerPrefs.GetInt("Score");
         level = PlayerPrefs.GetInt("Level");
         scoreText.text = "Score: " + score;
-        levelText.text = "Level: " + level;
+        levelText.text = "Level - " + level;
     }
 
     /**
@@ -174,13 +182,15 @@ public class GameManager : MonoBehaviour
     public void UpdateHP()
     {
         float hp = Mathf.Round(playerControl.HP);
-        hpText.text = "HP: " + hp + " / " + playerControl.maxHP;
+        hpText.text = hp + " / " + playerControl.maxHP;
+        hpSlider.value = Mathf.Lerp(hpSlider.value, playerControl.HP, Time.deltaTime * 10f); 
     }
 
     public void UpdateEnergy()
     {
         float energy = Mathf.Round(playerControl.EN);
-        energyText.text = "Energy: " + energy + " / " + playerControl.maxEN;
+        energyText.text = energy + " / " + playerControl.maxEN;
+        enSlider.value = Mathf.Lerp(enSlider.value, playerControl.EN, Time.deltaTime * 10f); 
     }
 
 }
