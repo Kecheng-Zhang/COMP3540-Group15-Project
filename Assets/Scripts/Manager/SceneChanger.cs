@@ -6,14 +6,9 @@ using UnityEngine.SceneManagement;
 public class SceneChanger : MonoBehaviour
 {
 
-    private GameObject player;
-    private PlayerControl playerControl;
-
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        playerControl = player.GetComponent<PlayerControl>();
     }
 
     // Update is called once per frame
@@ -25,7 +20,6 @@ public class SceneChanger : MonoBehaviour
     public void loadScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
-        upLoadPlayerState();
     }
 
     /**
@@ -35,6 +29,9 @@ public class SceneChanger : MonoBehaviour
      */
     public void upLoadPlayerState()
     {
+        GameObject player = GameObject.Find("Player");
+        PlayerControl playerControl = player.GetComponent<PlayerControl>();
+
         PlayerPrefs.SetFloat("speedLimit", playerControl.speedLimit);
         PlayerPrefs.SetFloat("HP", playerControl.HP);
         PlayerPrefs.SetFloat("maxHP", playerControl.maxHP);
@@ -57,6 +54,9 @@ public class SceneChanger : MonoBehaviour
      */
     public void downLoadPlayerState()
         {
+        GameObject player = GameObject.Find("Player");
+        PlayerControl playerControl = player.GetComponent<PlayerControl>();
+
         playerControl.speedLimit = PlayerPrefs.GetFloat("speedLimit");
         playerControl.HP = PlayerPrefs.GetFloat("HP");
         playerControl.maxHP = PlayerPrefs.GetFloat("maxHP");
