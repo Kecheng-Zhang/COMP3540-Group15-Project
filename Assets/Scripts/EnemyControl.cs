@@ -13,6 +13,9 @@ public class EnemyControl : MonoBehaviour
     public GameObject aidHP;
     public GameObject aidEN;
 
+    public float pDropKey; // The probability of the enemy dropping the key (0 - 1)
+    public GameObject key;
+
     public float damage;
     public float fireRate;
     public GameObject bullet;
@@ -58,6 +61,7 @@ public class EnemyControl : MonoBehaviour
         if (HP <= 0)
         {
             dropAid();
+            dropKey();
             gameManager.addScore(score);
             Destroy(gameObject);
         }
@@ -81,6 +85,20 @@ public class EnemyControl : MonoBehaviour
             {
                 Instantiate(aidEN, transform.position, transform.rotation);
             }
+        }
+    }
+
+    /** 
+     * <summary>
+     * Drop the key according to the probability.
+     * </summary>
+     */
+    private void dropKey()
+        {
+        float chanceDrop = Random.Range(0f, 1f);
+        if (chanceDrop < pDropKey)
+        {
+            Instantiate(key, transform.position, transform.rotation);
         }
     }
 

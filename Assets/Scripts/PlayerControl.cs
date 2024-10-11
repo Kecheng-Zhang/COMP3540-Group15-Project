@@ -45,6 +45,8 @@ public class PlayerControl : MonoBehaviour
 
     private GameObject gameManager;
 
+    public bool hasKey;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +54,8 @@ public class PlayerControl : MonoBehaviour
         canSprint = true;
         canSP = true;
         fireDeviationAngle = 1f;
+
+        hasKey = false;
 
         playerRB = GetComponent<Rigidbody>();
         HPIndicator = transform.Find("HPIndicator").gameObject;

@@ -1,0 +1,89 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4953504920815193729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6439517055948458028}
+  - component: {fileID: 4862341072109469017}
+  - component: {fileID: 5521369591060535348}
+  - component: {fileID: 5394985177365296702}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6439517055948458028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4953504920815193729}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4862341072109469017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4953504920815193729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9f5223f6eb39474db3ac5a75bd30d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyList:
+  - {fileID: 5972573599624197344, guid: 96158b8aedf040445a5c44bfe904ab01, type: 3}
+  - {fileID: 5972573599624197344, guid: c84bd2ded05a50f4ea90031354c3b786, type: 3}
+  - {fileID: 5972573599624197344, guid: 83455aa5b6296e64e82c3659dec02c1c, type: 3}
+  spawnRadiusMin: 45
+  spawnRadiusMax: 100
+  enemyHPGrouth: 0.1
+--- !u!114 &5521369591060535348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4953504920815193729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f57c502c7366e1e46a44e118a54675ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpSlider: {fileID: 0}
+  enSlider: {fileID: 0}
+  scoreText: {fileID: 0}
+  levelText: {fileID: 0}
+  gameOverText: {fileID: 0}
+  finalScoreText: {fileID: 0}
+  statusText: {fileID: 0}
+  hpText: {fileID: 0}
+  energyText: {fileID: 0}
+  restartButton: {fileID: 0}
+--- !u!114 &5394985177365296702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4953504920815193729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7804f57a6d12fd24f93e4b74f80c023a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

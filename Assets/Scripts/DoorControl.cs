@@ -6,10 +6,15 @@ public class DoorControl : MonoBehaviour
 {
     private Rigidbody doorRB;
 
+    private GameObject gameManager;
+    private SceneChanger sceneChanger;
+
     // Start is called before the first frame update
     void Start()
     {
         doorRB = GetComponent<Rigidbody>();
+        gameManager = GameObject.Find("GameManager");
+        sceneChanger = gameManager.GetComponent<SceneChanger>();
     }
 
     // Update is called once per frame
@@ -22,7 +27,14 @@ public class DoorControl : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            // FIXME: Implement the code
+            GameObject player = collision.gameObject;
+            PlayerControl playerControl = player.GetComponent<PlayerControl>();
+
+            if (playerControl.hasKey)
+            {
+                sceneChanger.upLoadPlayerState();
+                sceneChanger.loadScene("Scene1"); // FIXME: The scene name should be changed to the next scene.
+            }
         }
     }
 }
