@@ -202,6 +202,8 @@ MonoBehaviour:
   pDropHP: 0.5
   aidHP: {fileID: 9184727203511220695, guid: a899818137669bb459440d988daa1691, type: 3}
   aidEN: {fileID: 9184727203511220695, guid: d463c4f653e4f304987259430868a3c0, type: 3}
+  pDropKey: 0.5
+  key: {fileID: 3581982289943161431, guid: 217c9ac223875284991f8453092f2993, type: 3}
   damage: 10
   fireRate: 0
   bullet: {fileID: 4489867187103554623, guid: 4db3e832a0de3b9409febf8c1a7bcad9, type: 3}

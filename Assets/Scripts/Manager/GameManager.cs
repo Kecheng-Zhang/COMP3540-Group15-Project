@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public Slider hpSlider;
+    public Slider enSlider;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI levelText;
     public TextMeshProUGUI gameOverText;
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        downloadGameState();
         // Initialize the game
         Time.timeScale = 1;
         score = 0;
@@ -42,6 +45,12 @@ public class GameManager : MonoBehaviour
         player = GameObject.Find("Player");
         playerControl = player.GetComponent<PlayerControl>();
         statusText.gameObject.SetActive(false);
+
+        // HP Slider defalut
+        player = GameObject.Find("Player");
+        playerControl = player.GetComponent<PlayerControl>();
+        enSlider.maxValue = playerControl.maxEN; 
+        enSlider.value = playerControl.EN;
 
         UpdateHP();
         UpdateEnergy();
@@ -93,6 +102,26 @@ public class GameManager : MonoBehaviour
     {
         level++;
         levelText.text = "Level: " + level;
+    }
+
+    /**
+     * Upload the Game state to the database
+     */
+    public void uploadGameState()
+    {
+        PlayerPrefs.SetFloat("Score", score);
+        PlayerPrefs.SetInt("Level", level);
+    }
+
+    /**
+     * Download the Game state from the database
+     */
+    public void downloadGameState()
+    {
+        score = PlayerPrefs.GetInt("Score");
+        level = PlayerPrefs.GetInt("Level");
+        scoreText.text = "Score: " + score;
+        levelText.text = "Level - " + level;
     }
 
     /**
@@ -153,13 +182,15 @@ public class GameManager : MonoBehaviour
     public void UpdateHP()
     {
         float hp = Mathf.Round(playerControl.HP);
-        hpText.text = "HP: " + hp + " / " + playerControl.maxHP;
+        hpText.text = hp + " / " + playerControl.maxHP;
+        hpSlider.value = Mathf.Lerp(hpSlider.value, playerControl.HP, Time.deltaTime * 10f); 
     }
 
     public void UpdateEnergy()
     {
         float energy = Mathf.Round(playerControl.EN);
-        energyText.text = "Energy: " + energy + " / " + playerControl.maxEN;
+        energyText.text = energy + " / " + playerControl.maxEN;
+        enSlider.value = Mathf.Lerp(enSlider.value, playerControl.EN, Time.deltaTime * 10f); 
     }
 
 }
