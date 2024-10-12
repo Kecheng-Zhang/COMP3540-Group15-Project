@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 100
   maxHP: 100
+  damageTextPrefab: {fileID: 467426128134118891, guid: 1b1dd632ffa8449d8bb2d238ac87a8e0, type: 3}
   pDrop: 0.1
   pDropHP: 0.5
   aidHP: {fileID: 9184727203511220695, guid: a899818137669bb459440d988daa1691, type: 3}

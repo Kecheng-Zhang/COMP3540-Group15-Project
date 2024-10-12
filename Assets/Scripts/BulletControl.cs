@@ -43,6 +43,11 @@ public class BulletControl : MonoBehaviour
         {
             EnemyControl enemyControl = collision.gameObject.GetComponent<EnemyControl>();
             enemyControl.HP -= damage;
+             if (enemyControl != null)
+            {
+                enemyControl.TakeDamage(damage, collision.contacts[0].point);
+            }
+
             Destroy(gameObject);
         } else if (collision.gameObject.CompareTag("Obstacle")) // the bullet does not hurt the obstacle.
         {

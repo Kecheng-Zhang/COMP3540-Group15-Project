@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+
 
 public class EnemyControl : MonoBehaviour
 {
     public float HP;
     public float maxHP;
     private GameObject HPIndicator;
+    public GameObject damageTextPrefab;
 
     public float pDrop; // The probability of the enemy dropping the aid (0 - 1)
     public float pDropHP; // The probability of the aid being HP (0 - 1)
@@ -142,4 +145,79 @@ public class EnemyControl : MonoBehaviour
             
         }
     }
+
+private bool isInvulnerable = false;
+
+public void TakeDamage(float damageAmount, Vector3 hitPosition)
+{
+    if (isInvulnerable) return; 
+
+    HP -= damageAmount;
+
+    ShowDamage(damageAmount, hitPosition);
+
+    checkStatus();
+
+    StartCoroutine(InvulnerabilityCoroutine());
+}
+
+private IEnumerator InvulnerabilityCoroutine()
+{
+    isInvulnerable = true;
+    yield return new WaitForSeconds(0.1f); // 100毫秒内不可再受伤害
+    isInvulnerable = false;
+}
+private void ShowDamage(float damageAmount, Vector3 worldPosition)
+{
+    Vector3 fixedPosition = new Vector3(worldPosition.x, 0, worldPosition.z);
+    
+    // 找到 Canvas
+    GameObject canvas = GameObject.Find("DamageTextCanvas");
+    if (canvas == null)
+    {
+        Debug.LogError("DamageTextCanvas not found!");
+        return;
+    }
+
+    // 实例化伤害文本，并设置为固定位置
+    GameObject damageText = Instantiate(
+        damageTextPrefab, 
+        fixedPosition, 
+        Quaternion.Euler(90, 0, 0),  // 固定旋转，使所有文本一致
+        canvas.transform
+    );
+    // 获取 TextMeshProUGUI 组件并设置伤害数值
+    TextMeshProUGUI textMesh = damageText.GetComponent<TextMeshProUGUI>();
+    if (textMesh != null)
+    {
+        textMesh.text = damageAmount.ToString();
+    }
+
+    // 让文本面朝主相机，但不翻转
+    Vector3 direction = Camera.main.transform.position - damageText.transform.position;
+
+    //damageText.transform.rotation = Quaternion.LookRotation(direction);
+
+    // 1.5 秒后销毁伤害文本
+    Destroy(damageText, 1f);
+}
+
+
+private IEnumerator FloatDamageText(GameObject damageText)
+{
+    Vector3 initialPosition = damageText.transform.position;
+    Vector3 finalPosition = initialPosition + new Vector3(0, 1, 0); // 向上漂浮 2 个单位
+
+    float duration = 1.0f; 
+    float elapsed = 0;
+
+    while (elapsed < duration)
+    {
+        damageText.transform.position = Vector3.Lerp(initialPosition, finalPosition, elapsed / duration);
+        elapsed += Time.deltaTime; // 随着时间推移
+        yield return null; // 等待下一帧
+    }
+}
+
+
 }
