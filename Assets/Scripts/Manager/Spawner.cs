@@ -30,7 +30,7 @@ public class Spawner : MonoBehaviour
         if (enemyNum == 0)
         {
             waveNum++;
-            gameManager.addLevel();
+            gameManager.addWave();
             
             // spawn enemies
             int enemyNormNum = waveNum + 2;

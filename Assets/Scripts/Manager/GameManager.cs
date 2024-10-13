@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public Slider hpSlider;
     public Slider enSlider;
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI levelText;
+    public TextMeshProUGUI waveText;
     public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI finalScoreText;
     public TextMeshProUGUI statusText;
@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     private bool isGameOver;
 
     private int score;
-    private int level;
+    private int wave;
 
     private SceneChanger sceneChanger;
 
@@ -33,16 +33,15 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        downloadGameState();
         sceneChanger = GetComponent<SceneChanger>();
         sceneChanger.downLoadPlayerState();
 
         // Initialize the game
         Time.timeScale = 1;
         score = 0;
-        level = 0;
+        wave = 0;
         addScore(0);
-        levelText.text = "Level: " + level;
+        waveText.text = "Wave: " + wave;
         gameOverText.gameObject.SetActive(false);
         finalScoreText.gameObject.SetActive(false);
         restartButton.gameObject.SetActive(false);
@@ -103,40 +102,10 @@ public class GameManager : MonoBehaviour
      * Add the level to the game
      * </summary>
      */
-    public void addLevel()
+    public void addWave()
     {
-        level++;
-        levelText.text = "Level: " + level;
-    }
-
-    /**
-     * Upload the Game state to the database
-     */
-    public void uploadGameState()
-    {
-        PlayerPrefs.SetFloat("Score", score);
-        PlayerPrefs.SetInt("Level", level);
-    }
-
-    /**
-     * Download the Game state from the database
-     */
-    public void downloadGameState()
-    {
-        score = PlayerPrefs.GetInt("Score");
-        level = PlayerPrefs.GetInt("Level");
-        scoreText.text = "Score: " + score;
-        levelText.text = "Level - " + level;
-    }
-
-    /**
-     * <summary>
-     * Restart the game
-     * </summary>
-     */
-    public void restartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        wave++;
+        waveText.text = "Wave: " + wave;
     }
 
     /**
@@ -152,7 +121,7 @@ public class GameManager : MonoBehaviour
         finalScoreText.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(true);
         scoreText.gameObject.SetActive(false);
-        levelText.gameObject.SetActive(false);
+        waveText.gameObject.SetActive(false);
         statusText.gameObject.SetActive(false);
         hpText.gameObject.SetActive(false);
         energyText.gameObject.SetActive(false);

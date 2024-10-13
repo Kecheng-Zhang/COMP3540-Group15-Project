@@ -6330,6 +6330,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1484979469}
     - target: {fileID: 5521369591060535348, guid: c77adbcde5f667946a54b92107cc7a76, type: 3}
+      propertyPath: waveText
+      value: 
+      objectReference: {fileID: 1362661739}
+    - target: {fileID: 5521369591060535348, guid: c77adbcde5f667946a54b92107cc7a76, type: 3}
       propertyPath: levelText
       value: 
       objectReference: {fileID: 1362661739}
