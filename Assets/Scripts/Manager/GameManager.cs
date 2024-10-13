@@ -27,11 +27,16 @@ public class GameManager : MonoBehaviour
     private int score;
     private int level;
 
+    private SceneChanger sceneChanger;
+
 
     // Start is called before the first frame update
     void Start()
     {
         downloadGameState();
+        sceneChanger = GetComponent<SceneChanger>();
+        sceneChanger.downLoadPlayerState();
+
         // Initialize the game
         Time.timeScale = 1;
         score = 0;

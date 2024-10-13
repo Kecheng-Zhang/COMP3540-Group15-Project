@@ -30,17 +30,17 @@ public class BuffManager : MonoBehaviour
         playerControl = player.GetComponent<PlayerControl>();
         sceneChanger = GameObject.Find("UpgradeManager").GetComponent<SceneChanger>();
         refreshMenu();
+        sceneChanger.downLoadPlayerState();
     }
 
     // Update is called once per frame
     void Update()
     {
         setStatus();
-        if (count == 0)
-        {
-            string nextScene = PlayerPrefs.GetString("nextScene");
-            sceneChanger.loadScene(nextScene);
-        }
+    }
+
+    private void LateUpdate()
+    {
     }
 
     /** 
@@ -65,9 +65,14 @@ public class BuffManager : MonoBehaviour
     public void selectBuff(int index)
     {
         Instantiate(buffObjs[index], player.transform.position, player.transform.rotation);
-        Debug.Log("Buff " + index + " selected");
         count--;
+        Debug.Log("remaining" + count);
         refreshMenu();
+        sceneChanger.upLoadPlayerState();
+        if (count == 0)
+        {
+            Invoke("toNextScene", 0.1f);
+        }
     }
 
     /** 
@@ -110,4 +115,9 @@ public class BuffManager : MonoBehaviour
         statusText.text += "Sprint CD: " + playerControl.sprintCoolTime + "/s\n";
     }
 
+    private void toNextScene()
+    {
+        string nextScene = PlayerPrefs.GetString("nextScene");
+        sceneChanger.loadScene(nextScene);
+    }
 }
