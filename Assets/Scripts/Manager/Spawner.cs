@@ -78,4 +78,9 @@ public class Spawner : MonoBehaviour
             spawnIndex(enemyIndex, rMax);
         }
     }
+
+    public int getWaveNum()
+    {
+        return waveNum;
+    }
 }

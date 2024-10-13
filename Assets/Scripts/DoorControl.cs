@@ -33,7 +33,9 @@ public class DoorControl : MonoBehaviour
             if (playerControl.hasKey)
             {
                 sceneChanger.upLoadPlayerState();
-                sceneChanger.loadScene("Scene1"); // FIXME: The scene name should be changed to the next scene.
+                sceneChanger.upLoadLevelState();
+                sceneChanger.getRandNextScene();
+                sceneChanger.loadScene("UpgradeScene"); // FIXME: The scene name should be changed to the next scene.
             }
         }
     }

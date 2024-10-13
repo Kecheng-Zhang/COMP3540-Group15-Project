@@ -71,4 +71,29 @@ public class SceneChanger : MonoBehaviour
         playerControl.sprintCoolTime = PlayerPrefs.GetFloat("sprintCoolTime");
         playerControl.sprintFactor = PlayerPrefs.GetFloat("sprintFactor");
     }
+
+
+    /**
+     * <summary>
+     * Save the level state to the database.
+     * </summary>
+     */
+    public void upLoadLevelState()
+        {
+        GameObject gameManager = GameObject.Find("GameManager");
+        SceneChanger sceneChanger = gameManager.GetComponent<SceneChanger>();
+        Spawner spawner = gameManager.GetComponent<Spawner>();
+
+        PlayerPrefs.SetString("sceneName", SceneManager.GetActiveScene().name);
+        PlayerPrefs.SetInt("waveNum", spawner.getWaveNum());
+    }
+
+
+    public void getRandNextScene()
+    {
+        int num = Random.Range(1, 4);
+        string sceneName = "Scene" + num;
+        PlayerPrefs.SetString("nextScene", sceneName);
+    }
+
 }

@@ -38,7 +38,8 @@ public class BuffManager : MonoBehaviour
         setStatus();
         if (count == 0)
         {
-            sceneChanger.loadScene("Scene1");
+            string nextScene = PlayerPrefs.GetString("nextScene");
+            sceneChanger.loadScene(nextScene);
         }
     }
 
