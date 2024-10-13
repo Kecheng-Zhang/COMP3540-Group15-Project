@@ -217,7 +217,7 @@ public class PlayerControl : MonoBehaviour
             float rotateAngle = Random.Range(-0.5f, 0.5f) * fireDeviationAngle * bulletNum;
             Vector3 rotationEuler = new Vector3(0, rotateAngle, 0) + transform.rotation.eulerAngles;
             Quaternion finalRotation = Quaternion.Euler(rotationEuler);
-            GameObject bulletInstance = Instantiate(bullet, transform.position, finalRotation);
+            GameObject bulletInstance = Instantiate(bullet, powerIndicator.transform.position, finalRotation);
             BulletControl bulletControl = bulletInstance.GetComponent<BulletControl>();
             bulletControl.damage = damage;
         }
