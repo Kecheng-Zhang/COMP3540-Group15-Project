@@ -19,7 +19,6 @@ public class SceneChanger : MonoBehaviour
 
     public void loadScene(string sceneName)
     {
-        upLoadPlayerState();
         SceneManager.LoadScene(sceneName);
     }
 
