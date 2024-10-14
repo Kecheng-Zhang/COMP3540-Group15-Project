@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuffManager : MonoBehaviour
 {
@@ -17,6 +18,11 @@ public class BuffManager : MonoBehaviour
     public TextMeshProUGUI buffText3;
     public TextMeshProUGUI statusText;
     public TextMeshProUGUI msgText;
+
+    public Button buffButton1;
+    public Button buffButton2;
+    public Button buffButton3;
+    public Button confirmButton;
 
     private GameManager gameManager;
     private SceneChanger sceneChanger;
@@ -35,8 +41,12 @@ public class BuffManager : MonoBehaviour
         sceneChanger.downLoadPlayerState();
         
         waveBeaten = PlayerPrefs.GetInt("waveNum");
-        count = Mathf.Clamp(waveBeaten / 3, 1, 3);
-        msgText.text = waveBeaten + " waves beaten! Remaining upgrades: " + count;
+        count = Mathf.Clamp(waveBeaten / 3, 1, 3) + 1;
+
+        buffButton1.gameObject.SetActive(true);
+        buffButton2.gameObject.SetActive(true);
+        buffButton3.gameObject.SetActive(true);
+        confirmButton.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -47,6 +57,13 @@ public class BuffManager : MonoBehaviour
 
     private void LateUpdate()
     {
+        msgText.text = waveBeaten + " waves beaten! Remaining upgrades: " + count;
+
+        if (count <= 0)
+        {
+            confirmButton.gameObject.SetActive(true);
+        }
+
     }
 
     /** 
@@ -70,15 +87,15 @@ public class BuffManager : MonoBehaviour
      */
     public void selectBuff(int index)
     {
+        if (count <= 0)
+        {
+            return;
+        }
         Instantiate(buffObjs[index], player.transform.position, player.transform.rotation);
         count--;
         Debug.Log("remaining" + count);
         refreshMenu();
-        sceneChanger.upLoadPlayerState();
-        if (count == 0)
-        {
-            Invoke("toNextScene", 0.1f);
-        }
+        
     }
 
     /** 

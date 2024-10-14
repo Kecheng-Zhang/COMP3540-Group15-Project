@@ -103,7 +103,7 @@ public class TutorialManager : MonoBehaviour
             }
         else if (currentTutorialStage == 5 && Input.GetKeyDown(KeyCode.Escape))
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene("Scene1");
         }
     }
 

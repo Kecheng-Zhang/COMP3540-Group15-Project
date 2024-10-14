@@ -96,4 +96,11 @@ public class SceneChanger : MonoBehaviour
         PlayerPrefs.SetString("nextScene", sceneName);
     }
 
+    public void toRandNextScene()
+    {
+        int num = Random.Range(1, 4);
+        string sceneName = "Scene" + num;
+        SceneManager.LoadScene(sceneName);
+    }
+
 }
