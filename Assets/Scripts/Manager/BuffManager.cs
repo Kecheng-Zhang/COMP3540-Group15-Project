@@ -16,11 +16,13 @@ public class BuffManager : MonoBehaviour
     public TextMeshProUGUI buffText2;
     public TextMeshProUGUI buffText3;
     public TextMeshProUGUI statusText;
+    public TextMeshProUGUI msgText;
 
     private GameManager gameManager;
     private SceneChanger sceneChanger;
 
-    public int count; // The number of upgrades the player can choose
+    private int waveBeaten;
+    private int count; // The number of upgrades the player can choose
 
     private int enemyNum;
 
@@ -31,6 +33,10 @@ public class BuffManager : MonoBehaviour
         sceneChanger = GameObject.Find("UpgradeManager").GetComponent<SceneChanger>();
         refreshMenu();
         sceneChanger.downLoadPlayerState();
+        
+        waveBeaten = PlayerPrefs.GetInt("waveNum");
+        count = Mathf.Clamp(waveBeaten / 3, 1, 3);
+        msgText.text = waveBeaten + " waves beaten! Remaining upgrades: " + count;
     }
 
     // Update is called once per frame
