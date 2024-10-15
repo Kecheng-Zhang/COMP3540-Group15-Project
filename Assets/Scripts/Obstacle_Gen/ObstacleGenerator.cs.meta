@@ -3,7 +3,27 @@ guid: ccd439b0ff9059444af552c095f06dfe
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tutorialObstaclePrefab: {fileID: 573573865698385911, guid: e0b2792fd3ecf274fa1b9172d6962562, type: 3}
+  - shippingContainerPrefab: {instanceID: 0}
+  - boatPrefab: {instanceID: 0}
+  - pierPrefab: {instanceID: 0}
+  - waterPrefab: {instanceID: 0}
+  - buildingPrefab: {instanceID: 0}
+  - cratePrefab: {instanceID: 0}
+  - truckPrefab: {instanceID: 0}
+  - conveyerBeltPrefab: {instanceID: 0}
+  - rackPrefab: {instanceID: 0}
+  - boxPrefab: {instanceID: 0}
+  - palettePrefab: {instanceID: 0}
+  - devicesPrefab: {instanceID: 0}
+  - filingCabinetPrefab: {instanceID: 0}
+  - computerDeskPrefab: {instanceID: 0}
+  - dividerPrefab: {instanceID: 0}
+  - chairPrefab: {instanceID: 0}
+  - moneyPilePrefab: {instanceID: 0}
+  - safePrefab: {instanceID: 0}
+  - railingPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
