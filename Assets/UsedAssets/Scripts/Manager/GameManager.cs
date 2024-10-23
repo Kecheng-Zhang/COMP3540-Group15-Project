@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
     private SceneChanger sceneChanger;
 
     public TextMeshProUGUI countdownText;
+    public TextMeshProUGUI keyMessageText;
+
 
 
     // Start is called before the first frame update
@@ -189,5 +191,23 @@ public class GameManager : MonoBehaviour
         energyText.text = energy + " / " + playerControl.maxEN;
         enSlider.value = Mathf.Lerp(enSlider.value, playerControl.EN, Time.deltaTime * 10f); 
     }
+
+// 添加显示钥匙消息的方法
+    public void ShowKeyMessage(string message)
+    {
+        keyMessageText.text = message;
+        keyMessageText.gameObject.SetActive(true);
+
+        // 设置一段时间后隐藏提示（例如 3 秒）
+        StartCoroutine(HideKeyMessage());
+    }
+
+    private IEnumerator HideKeyMessage()
+    {
+        yield return new WaitForSeconds(3f);
+        keyMessageText.gameObject.SetActive(false);
+    }
+
+
 
 }

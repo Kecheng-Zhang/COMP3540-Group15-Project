@@ -24,7 +24,15 @@ public class KeyController : MonoBehaviour
             GameObject player = collision.gameObject;
             PlayerControl playerControl = player.GetComponent<PlayerControl>();
             playerControl.hasKey = true;
+
+            GameManager gameManager = FindObjectOfType<GameManager>();
+            if (gameManager != null)
+            {
+                gameManager.ShowKeyMessage("Well done! You've got the key. Time to make your great escape!");
+            }
+
             Destroy(gameObject);
         }
     }
+
 }

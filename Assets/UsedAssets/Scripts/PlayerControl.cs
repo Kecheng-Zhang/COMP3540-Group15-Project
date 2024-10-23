@@ -46,6 +46,8 @@ public class PlayerControl : MonoBehaviour
     private GameObject gameManager;
 
     public bool hasKey;
+    public bool keyMessageShown = false;
+
 
     public bool gamePause = false;
 
@@ -298,5 +300,27 @@ public class PlayerControl : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyControl>().HP = 0;
         }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GameObject player = collision.gameObject;
+            PlayerControl playerControl = player.GetComponent<PlayerControl>();
+            if (!playerControl.hasKey)
+            {
+                playerControl.hasKey = true;
+
+                if (!playerControl.keyMessageShown)
+                {
+                    GameManager gameManager = FindObjectOfType<GameManager>();
+                    if (gameManager != null)
+                    {
+                        gameManager.ShowKeyMessage("Congratulation! You got the key! Escape the room now!");
+                    }
+                    playerControl.keyMessageShown = true;
+                }
+            }
+            Destroy(gameObject);
+        }
     }
+    
+
 }
