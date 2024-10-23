@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     private SceneChanger sceneChanger;
 
+    public TextMeshProUGUI countdownText;
+
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +60,8 @@ public class GameManager : MonoBehaviour
 
         UpdateHP();
         UpdateEnergy();
+
+        StartCoroutine(StartCountdown());
     }
 
     // Update is called once per frame
@@ -84,6 +88,25 @@ public class GameManager : MonoBehaviour
             Time.timeScale = 1;
         }
     }
+
+    /**
+     * <summary>
+     * Countdown function
+     * </summary>
+     */
+    IEnumerator StartCountdown()
+    {
+        Time.timeScale = 0;
+        for (int i = 3; i > 0; i--)
+        {
+            countdownText.text = i.ToString();
+            countdownText.gameObject.SetActive(true);
+            yield return new WaitForSecondsRealtime(1f);
+        }
+        countdownText.gameObject.SetActive(false);
+        Time.timeScale = 1;
+    }
+
 
     /**
      * <summary>
