@@ -57,56 +57,62 @@ public class TutorialManager : MonoBehaviour
     }
 
     void HandleInput()
+{
+    switch (currentTutorialStage)
     {
-        if (currentTutorialStage == 0)
-        {
+        case 0:
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
             {
                 movementCounter++;
                 if (movementCounter >= movementThreshold)
                 {
-                     StartCoroutine(ShowEncouragementAndProceed("Great!"));
                     movementCounter = 0;
+                    StartCoroutine(ShowEncouragementAndProceed("Great!"));
+                    currentTutorialStage++;
                 }
             }
-        }
-        else if (currentTutorialStage == 1)
-        {
+            break;
+        case 1:
             if (Input.GetMouseButtonDown(0))
             {
                 StartCoroutine(ShowEncouragementAndProceed("Nice Try!"));
-        }
-        }
-         else if (currentTutorialStage == 2 && Input.GetKeyDown(KeyCode.LeftShift))
+                currentTutorialStage++;
+            }
+            break;
+        case 2:
+            if (Input.GetKeyDown(KeyCode.LeftShift))
             {
                 StartCoroutine(ShowEncouragementAndProceed("Perfect!"));
+                currentTutorialStage++;
             }
-            else if (currentTutorialStage == 3 && Input.GetKeyDown(KeyCode.Space))
+            break;
+        case 3:
+            if (Input.GetKeyDown(KeyCode.Space))
             {
                 StartCoroutine(ShowEncouragementAndProceed("Well Done!"));
+                currentTutorialStage++;
             }
-            else if (currentTutorialStage == 4)
+            break;
+        case 4:
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                if (Input.GetKeyDown(KeyCode.Tab))
-                {
-                    statusText.gameObject.SetActive(true);
-                }else if (Input.GetKeyUp(KeyCode.Tab))
-                    {
-                        statusText.gameObject.SetActive(false);
-                    }
-            
-
-                if (Input.GetKeyDown(KeyCode.Tab))
-                {
-                    StartCoroutine(ShowEncouragementAndProceed("Excellent!"));
-                }
+                statusText.gameObject.SetActive(true);
             }
-        else if (currentTutorialStage == 5 && Input.GetKeyDown(KeyCode.Escape))
-        {
-            SceneManager.LoadScene("Scene1");
-        }
+            else if (Input.GetKeyUp(KeyCode.Tab))
+            {
+                statusText.gameObject.SetActive(false);
+                StartCoroutine(ShowEncouragementAndProceed("Excellent!"));
+                currentTutorialStage++;
+            }
+            break;
+        case 5:
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                SceneManager.LoadScene("Scene1");
+            }
+            break;
     }
-
+}
 
 
 
@@ -170,44 +176,45 @@ public class TutorialManager : MonoBehaviour
 
         tutorialCanvasGroup.alpha = 1;
     }
+
+
 IEnumerator ShowEncouragementAndProceed(string message)
 {
     CanvasGroup encourageCanvasGroup = encourageText.GetComponent<CanvasGroup>();
-        if (encourageCanvasGroup == null)
-        {
-            encourageCanvasGroup = encourageText.gameObject.AddComponent<CanvasGroup>();
-        }
-
-        encourageText.text = message;
-
-        encourageCanvasGroup.alpha = 0;
-
-        float fadeInDuration = 0.8f; 
-        float fadeOutDelay = 0.8f;  
-        float elapsedTime = 0f;
-
-        while (elapsedTime < fadeInDuration)
-            {
-                elapsedTime += Time.deltaTime;
-                encourageCanvasGroup.alpha = Mathf.Lerp(0, 1, elapsedTime / fadeInDuration);
-                yield return null;
-            }
-
-        yield return new WaitForSeconds(fadeOutDelay);
-
-        elapsedTime = 0f;
-        float fadeOutDuration = 0.8f; 
-
-        while (elapsedTime < fadeOutDuration)
-            {
-                elapsedTime += Time.deltaTime;
-                encourageCanvasGroup.alpha = Mathf.Lerp(1, 0, elapsedTime / fadeOutDuration);
-                yield return null;
-            }
-
-        encourageCanvasGroup.alpha = 0;
-
-        currentTutorialStage++;
+    if (encourageCanvasGroup == null)
+    {
+        encourageCanvasGroup = encourageText.gameObject.AddComponent<CanvasGroup>();
     }
 
+    encourageText.text = message;
+    encourageCanvasGroup.alpha = 0;
+
+    float fadeInDuration = 0.8f;
+    float fadeOutDelay = 0.8f;
+    float elapsedTime = 0f;
+
+    while (elapsedTime < fadeInDuration)
+    {
+        elapsedTime += Time.deltaTime;
+        encourageCanvasGroup.alpha = Mathf.Lerp(0, 1, elapsedTime / fadeInDuration);
+        yield return null;
+    }
+
+    yield return new WaitForSeconds(fadeOutDelay);
+
+    elapsedTime = 0f;
+    float fadeOutDuration = 0.8f;
+
+    while (elapsedTime < fadeOutDuration)
+    {
+        elapsedTime += Time.deltaTime;
+        encourageCanvasGroup.alpha = Mathf.Lerp(1, 0, elapsedTime / fadeOutDuration);
+        yield return null;
+    }
+
+    encourageCanvasGroup.alpha = 0;
 }
+
+
+}
+
