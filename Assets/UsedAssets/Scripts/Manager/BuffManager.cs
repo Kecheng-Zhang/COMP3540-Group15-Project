@@ -63,6 +63,10 @@ public class BuffManager : MonoBehaviour
         {
             confirmButton.gameObject.SetActive(true);
         }
+        else
+        {
+           playerControl.gamePause = true; 
+        }
 
     }
 
@@ -140,6 +144,7 @@ public class BuffManager : MonoBehaviour
 
     private void toNextScene()
     {
+        playerControl.gamePause = false;
         string nextScene = PlayerPrefs.GetString("nextScene");
         sceneChanger.loadScene(nextScene);
     }

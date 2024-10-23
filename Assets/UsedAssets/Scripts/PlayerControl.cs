@@ -47,6 +47,8 @@ public class PlayerControl : MonoBehaviour
 
     public bool hasKey;
 
+    public bool gamePause = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -173,7 +175,9 @@ public class PlayerControl : MonoBehaviour
     private void checkStatus()
     {
         // Check HP
-        HP += HPRecoveryRate * Time.deltaTime;
+        if (!gamePause) {
+            
+        }
         HP = Mathf.Clamp(HP, 0, maxHP);
         Color HPColor = HPIndicator.GetComponent<MeshRenderer>().material.color;
         HPColor.a = HP / maxHP;
@@ -186,7 +190,9 @@ public class PlayerControl : MonoBehaviour
         }
 
         // check EN
-        EN += ENRecoveryRate * Time.deltaTime;
+        if (!gamePause) {
+            EN += ENRecoveryRate * Time.deltaTime;
+        }
         EN = Mathf.Clamp(EN, 0, maxEN);
         Color powerColor = powerIndicator.GetComponent<MeshRenderer>().material.color;
         // Check if power shot is available
